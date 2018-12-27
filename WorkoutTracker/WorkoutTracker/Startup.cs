@@ -24,7 +24,7 @@ namespace WorkoutTracker
             services.AddDbContext<WorkoutContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WorkoutContext")));
 
-            services.AddCors(options =>
+            services.AddCors(options => //allows any API request from any origin | don't use in production.
             {
                 options.AddPolicy("CorsPolicy",
                     builder => builder.AllowAnyOrigin()
@@ -42,6 +42,7 @@ namespace WorkoutTracker
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseMvc();
         }
     }
