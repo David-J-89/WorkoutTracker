@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using WorkoutTracker.Models;
 
 namespace WorkoutTracker.Controllers
@@ -21,7 +19,7 @@ namespace WorkoutTracker.Controllers
         }
 
         // GET: api/Workouts
-        [HttpGet]
+        [HttpGet] //obtains the list of data.
         public IEnumerable<Workout> GetWorkout()
         {
             return _context.Workout;
@@ -47,7 +45,7 @@ namespace WorkoutTracker.Controllers
         }
 
         // PUT: api/Workouts/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}")] //updates a specific record.
         public async Task<IActionResult> PutWorkout([FromRoute] int id, [FromBody] Workout workout)
         {
             if (!ModelState.IsValid)
@@ -82,7 +80,7 @@ namespace WorkoutTracker.Controllers
         }
 
         // POST: api/Workouts
-        [HttpPost]
+        [HttpPost] //adds a new record.
         public async Task<IActionResult> PostWorkout([FromBody] Workout workout)
         {
             if (!ModelState.IsValid)
@@ -97,7 +95,7 @@ namespace WorkoutTracker.Controllers
         }
 
         // DELETE: api/Workouts/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] //deletes a record.
         public async Task<IActionResult> DeleteWorkout([FromRoute] int id)
         {
             if (!ModelState.IsValid)
